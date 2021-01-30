@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:decorate xmlns="http://www.w3.org/1999/xhtml"
+             xmlns:h="http://xmlns.jcp.org/jsf/html"
+             xmlns:p="http://primefaces.org/ui"
+             xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+             template="template.xhtml"
+             xmlns:os="http://xmlns.jcp.org/jsf/composite/oscomponente">
+
+    <h:form>
+        <os:toolbar bean="#{clienteBean}"></os:toolbar>
+        <p:spacer></p:spacer>
+        <p:panelGrid columns="2" styleClass="ui-panelgrid-blank" rendered="#{clienteBean.status.name() != 'BUSCA'}">
+            <h:outputLabel value="CNPJ"></h:outputLabel>
+            <p:inputText value="#{clienteBean.entidade.cpfCnpj}"></p:inputText>
+            <h:outputLabel value="RG"></h:outputLabel>
+            <p:inputText value="#{clienteBean.entidade.rgInscricao}"></p:inputText>
+            <h:outputLabel value="Nome"></h:outputLabel>
+            <p:inputText value="#{clienteBean.entidade.nomeFantasia}"></p:inputText>
+            <h:outputLabel value="Sobrenome"></h:outputLabel>
+            <p:inputText value="#{clienteBean.entidade.sobrenomeRazao}"></p:inputText>
+            <h:outputLabel value="Data Nascimento"></h:outputLabel>
+            <p:calendar value="#{clienteBean.entidade.dataNascimento}"></p:calendar>
+            <h:outputLabel value="Sexo"></h:outputLabel>
+            <p:inputText value="#{clienteBean.entidade.sexo}"></p:inputText>
+            <h:outputLabel value="E-mail"></h:outputLabel>
+            <p:inputText value="#{clienteBean.entidade.email}"></p:inputText>
+        </p:panelGrid>
+
+        <p:dataTable value="#{clienteBean.entidades}" var="ent" rendered="#{clienteBean.status.name() == 'BUSCA'}">
+            <p:column>
+                <p:commandButton icon="fa fa-fw fa-pencil" actionListener="#{clienteBean.editar(ent)}"
+                                 update="@form" > </p:commandButton>
+                <p:commandButton icon="fa fa-fw fa-trash" actionListener="#{clienteBean.deletar(ent)}"
+                                 update="@form" >   </p:commandButton>
+            </p:column>
+            <p:column headerText="Nome">
+                <h:outputText value="#{ent.nomeFantasia}"></h:outputText>
+            </p:column>
+            <p:column headerText="E-mail">
+                <h:outputText value="#{ent.email}"></h:outputText>
+            </p:column>
+            <p:column headerText="CPF">
+                <h:outputText value="#{ent.cpfCnpj}"></h:outputText>
+            </p:column>
+        </p:dataTable>
+    </h:form>
+</ui:decorate>
+

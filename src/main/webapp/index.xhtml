@@ -1,0 +1,90 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:decorate xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      template="template.xhtml">
+    
+    <style>
+        .dashboard-cards {
+            display: flex;
+        }
+        .card {
+            margin: 10px;
+            border-radius: 5px;
+            box-shadow: 0px 10px 10px -10px black;
+            overflow: hidden;
+        }
+        .card-titulo {
+            padding: 10px;
+            background: rgba(0,0,0,0.2);
+        }
+        .card-conteudo {
+            padding: 10px;
+            text-align: center;
+        }
+        .card-conteudo-destaque {
+            font-size: 3em;
+        }
+        .card-conteudo-descricao {
+        }
+        .card-red {
+            background: #FF6B6C;
+        }
+        .card-green {
+            background: #7FB285;
+        }
+        .card-blue {
+            background: #5C80BC;
+        }
+        .card-orange {
+            background: #FFCE5C;
+        }
+        .card-gray {
+            background: #B9B9B6;
+        }
+        @media screen and (max-width: 767px) {
+            .dashboard-cards {
+                flex-direction: column;
+            }
+        }
+    </style>
+    
+      
+        <h:form>
+            <div class="dashboard-cards">
+
+                <div class="card card-red">
+                    <div class="card-titulo">OS em espera</div>
+                    <div class="card-conteudo">
+                        <div class="card-conteudo-destaque">24</div>
+                        <div class="card-conteudo-descricao">Em espera</div>
+                    </div>
+                </div>
+                <div class="card card-blue">
+                    <div class="card-titulo">OS em manutenção</div>
+                    <div class="card-conteudo">
+                        <div class="card-conteudo-destaque">4</div>
+                        <div class="card-conteudo-descricao">Em manutenção</div>
+                    </div>
+                </div>
+                <div class="card card-orange">
+                    <div class="card-titulo">OS aguardando peça</div>
+                    <div class="card-conteudo">
+                        <div class="card-conteudo-destaque">12</div>
+                        <div class="card-conteudo-descricao">Aguardando peça</div>
+                    </div>
+                </div>
+                <div class="card card-green">
+                    <div class="card-titulo">OS Concluída</div>
+                    <div class="card-conteudo">
+                        <div class="card-conteudo-destaque">8</div>
+                        <div class="card-conteudo-descricao">Aguardando retirada</div>
+                    </div>
+                </div>
+                 
+            </div>
+
+        </h:form>
+</ui:decorate>
+

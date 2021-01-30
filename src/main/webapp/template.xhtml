@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>Sistema OS</title>
+        <h:outputStylesheet library="os" name="css/estilo.css"></h:outputStylesheet>
+    </h:head>
+    <h:body class="responsive-admin aside-open">
+        <aside>
+            <div class="logo">
+                <h:graphicImage library="os" name="images/logo.png"></h:graphicImage>
+            </div>
+            <nav class="menu">
+                <a href="index.xhtml">
+                    <i class="fa fa-fw fa-dashboard"></i> Dashboard
+                </a>
+
+                <a href="#" class="submenu-toggle">
+                    <i class="fa fa-fw fa-file-text-o"></i> Cadastros <i class="fa fa-fw fa-angle-down"></i>
+                </a>
+                <ul>
+                    <li><a href="gerenciar-usuarios.xhtml"><i class="fa fa-fw fa-user"></i> Usuários</a></li>
+                    <li><a href="gerenciar-servicos.xhtml"><i class="fa fa-fw fa-wrench"></i> Serviços</a></li>
+                    <li><a href="gerenciar-clientes.xhtml"><i class="fa fa-fw fa-users"></i> Clientes</a></li>
+                    <li><a href="gerenciar-status.xhtml"><i class="fa fa-fw fa-refresh"></i> Status</a></li>
+                </ul>
+                
+                <a href="#" class="submenu-toggle"><i class="fa fa-fw fa-gear"></i> OS <i class="fa fa-fw fa-angle-down"></i></a>
+                <ul>
+                    <li><a href="#"><i class="fa fa-fw fa-plus"></i> Registrar</a></li>
+                    <li><a href="#"><i class="fa fa-fw fa-refresh"></i> Atualizar</a></li>
+                </ul>
+                
+                <a href="#"><i class="fa fa-fw fa-calculator"></i> Caixa</a>
+                
+                <a href="#" class="submenu-toggle">
+                    <i class="fa fa-fw fa-server"></i> Sistema <i class="fa fa-fw fa-angle-down"></i>
+                </a>
+                <ul>
+                    <li><a href="#"><i class="fa fa-fw fa-wrench"></i> Configurações</a></li>
+                    <li><a href="#"><i class="fa fa-fw fa-question"></i> Sobre</a></li>
+                </ul>
+                
+            </nav>
+        </aside>
+        <header>
+            <a href="#" class="aside-toggle"><i class="fa fa-fw fa-navicon"></i></a>
+            <div class="topopcoes">
+                <a href="#"><i class="fa fa-fw fa-user"></i>Danilo Souza</a>
+            </div>        
+        </header>
+        <main>
+            <p:messages>
+                <p:autoUpdate/>
+            </p:messages>
+            <ui:insert></ui:insert>
+
+        </main>
+        <footer>
+            <h:graphicImage library="os" name="images/simbolo_if_mini.png"></h:graphicImage>
+            <p>
+                OSystem - Sistema de Ordem e Serviço da Disciplina de PPW2 - IFTM Campus Paracatu
+            </p>
+        </footer>
+        <h:outputScript library="os" name="js/script.js"></h:outputScript>
+
+    </h:body>
+</html>
+

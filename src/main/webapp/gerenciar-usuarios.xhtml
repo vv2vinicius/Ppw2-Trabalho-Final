@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:decorate xmlns="http://www.w3.org/1999/xhtml"
+             xmlns:h="http://xmlns.jcp.org/jsf/html"
+             xmlns:p="http://primefaces.org/ui"
+             xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+             template="template.xhtml"
+             xmlns:os="http://xmlns.jcp.org/jsf/composite/oscomponente"
+             xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+
+    <h:form>
+        <os:toolbar bean="#{usuarioBean}" marginBottom="15">
+            <p:commandButton icon="fa #{usuarioBean.entidade.dataDesativacao == null?'fa-close':'fa-check'}"
+                             value="#{usuarioBean.entidade.dataDesativacao == null?'Desativar':'Ativar'}"
+                             rendered="#{usuarioBean.status.name() == 'EDITA'}"
+                             actionListener="#{usuarioBean.alterarAtivacao}"
+                             update="@form">
+            </p:commandButton>
+        </os:toolbar>
+        <p:panelGrid columns="2" styleClass="ui-panelgrid-blank" rendered="#{usuarioBean.status.name() != 'BUSCA'}">
+
+            <p:outputLabel value="Nome" for="nomeid" ></p:outputLabel>
+            <p:inputText id="nomeid" value="#{usuarioBean.entidade.nome}"></p:inputText>
+
+            <p:outputLabel value="Login" for="loginid" ></p:outputLabel>
+            <p:inputText id="loginid" value="#{usuarioBean.entidade.login}"></p:inputText>
+
+            <p:outputLabel value="Email" for="emailid" ></p:outputLabel>
+            <p:inputText id="emailid" value="#{usuarioBean.entidade.email}"></p:inputText>
+
+            <p:outputLabel value="Senha" for="senhaid" ></p:outputLabel>
+            <p:password id="senhaid" value="#{usuarioBean.senha}"></p:password>
+
+
+            <h:outputText></h:outputText>
+
+            <p:fieldset legend="Permissões">
+                <p:selectManyCheckbox value="#{usuarioBean.entidade.permissoes}" id="selectPermissoes">
+                    <f:attribute name="collectionType" value="java.util.ArrayList" />
+                    <f:selectItems value="#{usuarioBean.permissoes}" var="permissao" itemLabel="#{permissao.descricao}" itemValue="#{permissao}"></f:selectItems>
+                </p:selectManyCheckbox>
+            </p:fieldset>
+
+        </p:panelGrid>
+
+        <p:tooltip />
+
+        <style>
+            .ativo {
+                color: #229922;
+                font-weight: bold;
+            }
+            .desativado {
+                color: #992222;
+                font-weight: bold;
+            }
+        </style>
+
+        <p:dataTable value="#{usuarioBean.entidades}" var="usuario" rendered="#{usuarioBean.status.name() == 'BUSCA'}">
+            <p:column width="90">
+                <p:commandButton icon="fa fa-pencil" actionListener="#{usuarioBean.editar(usuario)}" update="@form"></p:commandButton>
+                <p:commandButton icon="fa fa-trash" actionListener="#{usuarioBean.deletar(usuario)}" update="@form"></p:commandButton>
+            </p:column>
+            <p:column width="40">
+                <p:graphicImage url="https://www.gravatar.com/avatar/#{usuario.emailHash}?s=32&amp;d=mp">
+                    <p:overlayPanel for="@parent" dynamic="true" >
+                        <p:graphicImage url="https://www.gravatar.com/avatar/#{usuario.emailHash}?s=150&amp;d=mp"></p:graphicImage>
+                    </p:overlayPanel>
+                </p:graphicImage>
+            </p:column>
+            <p:column headerText="Nome">
+                <h:outputText value="#{usuario.nome}"></h:outputText>
+            </p:column>
+            <p:column headerText="Login">
+                <h:outputText value="#{usuario.login}"></h:outputText>
+            </p:column>
+            <p:column headerText="Email">
+                <h:outputText value="#{usuario.email}"></h:outputText>
+            </p:column>
+            <p:column headerText="Data Cadastro">
+                <h:outputText value="#{usuario.dataCadastro}">
+                    <f:convertDateTime locale="pt-br" type="both" dateStyle="short"></f:convertDateTime>
+                </h:outputText>
+            </p:column>
+            <p:column headerText="Status">
+                <p:outputLabel title="#{usuario.dataDesativacao == null?'':'Desativado em:  '.concat(usuario.dataDesativacao)}" styleClass="#{usuario.dataDesativacao == null?'ativo':'desativado'}">
+                    <i class="fa #{usuario.dataDesativacao == null?'fa-check':'fa-close'}"></i>
+                    #{usuario.dataDesativacao == null?'Ativo':'Desativado'}
+                </p:outputLabel>
+            </p:column>
+        </p:dataTable>
+    </h:form>
+</ui:decorate>
+

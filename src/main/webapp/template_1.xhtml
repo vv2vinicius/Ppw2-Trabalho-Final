@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Facelet Title</title>
+        <h:outputStylesheet library="os" name="css/admin-os.css"></h:outputStylesheet>
+    </h:head>
+    <h:body>
+        <h:form>
+            <h:graphicImage library="os" name="images/logo.png" height="50px" style="padding: 5px"></h:graphicImage>
+            <p:menubar>
+                <p:menuitem icon="fa fa-fw fa-dashboard" value="Inicio" url="index.xhtml"></p:menuitem>
+                <p:submenu icon="fa fa-fw fa-pencil-square-o" label="Cadastrar">
+                    <p:menuitem icon="fa fa-fw fa-users" value="Clientes"></p:menuitem>
+                    <p:menuitem icon="fa fa-fw fa-th-list" value="Serviços" url="gerenciar-servicos.xhtml"></p:menuitem>
+                    <p:menuitem icon="fa fa-fw fa-user" value="Usuários" url="gerenciar-usuarios.xhtml"></p:menuitem>
+                </p:submenu>
+                <p:submenu icon="fa fa-fw fa-gear" label="OS">
+                    <p:menuitem icon="fa fa-fw fa-plus" value="Registrar"></p:menuitem>
+                    <p:menuitem icon="fa fa-fw fa-refresh" value="Atualizar"></p:menuitem>
+                </p:submenu>
+                <p:menuitem icon="fa fa-fw fa-calculator" value="Caixa"></p:menuitem>
+                <p:submenu icon="fa fa-fw fa-server" label="Sistema">
+                    <p:menuitem icon="fa fa-fw fa-wrench" value="Configurações"></p:menuitem>
+                    <p:separator></p:separator>
+                    <p:menuitem icon="fa fa-fw fa-question" value="Sobre"></p:menuitem>
+                </p:submenu>
+            </p:menubar>
+        </h:form>
+        <p:spacer height="15px"></p:spacer>
+        <p:fieldset legend="Conteúdo" >
+            <ui:insert></ui:insert>
+        </p:fieldset>
+    </h:body>
+</html>
+

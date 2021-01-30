@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:cc="http://xmlns.jcp.org/jsf/composite"
+      xmlns:p="http://primefaces.org/ui">
+
+    <!-- INTERFACE -->
+    <cc:interface>
+        <cc:attribute name="bean" required="true" type="br.edu.iftm.os.bean.CrudBean"></cc:attribute>
+        <cc:attribute name="marginBottom" default="0" shortDescription="Margin inferior - Valor padrão 0. Medida em px. Não informar o px."></cc:attribute>
+    </cc:interface>
+
+    <!-- IMPLEMENTATION -->
+    <cc:implementation>
+        <p:toolbar style="margin-bottom: #{cc.attrs.marginBottom}px">
+            <p:toolbarGroup>
+                <p:commandButton icon="fa fa-fw fa-file" actionListener="#{cc.attrs.bean.novo()}"
+                                 update="@form" value="Novo"
+                                 ></p:commandButton>
+                <p:commandButton icon="fa fa-fw fa-save" actionListener="#{cc.attrs.bean.salvar()}"
+                                 rendered="#{cc.attrs.bean.status.name() != 'BUSCA'}"
+                                 update="@form" value="Salvar"
+                                 ></p:commandButton>
+                <p:commandButton icon="fa fa-fw #{cc.attrs.bean.status.name() == 'BUSCA'?'fa-search':'fa-mail-reply'}" actionListener="#{cc.attrs.bean.buscar()}"
+                                 update="@form" value="#{cc.attrs.bean.status.name() == 'BUSCA'?'Buscar':'Voltar'}"></p:commandButton>
+                <cc:insertChildren></cc:insertChildren>
+            </p:toolbarGroup>
+        </p:toolbar>
+    </cc:implementation>
+</html>

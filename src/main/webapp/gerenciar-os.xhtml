@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:decorate xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:p="http://primefaces.org/ui" xmlns:ui="http://xmlns.jcp.org/jsf/facelets" template="template.xhtml" xmlns:os="http://xmlns.jcp.org/jsf/composite/oscomponente" xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+
+    <h:form>
+        <os:toolbar bean="#{osBean}" marginBottom="15"> </os:toolbar>
+        <p:panelGrid columns="2" styleClass="ui-panelgrid-blank" rendered="#{osBean.status != 'BUSCA'}">
+            <p:outputLabel value="Codigo da Os" for="codigoOsid"></p:outputLabel>
+            <p:inputText id="codigoOsid" value="#{osBean.entidade.codigoOS}"></p:inputText>
+            <p:outputLabel value="Descrição de Equipamentos" for="descricaoId"></p:outputLabel>
+            <p:inputText id="descricaoId" value="#{osBean.entidade.descricaoEquipamento}"></p:inputText>
+            <h:outputLabel value="Nome do Cliente" for="nomeCliente"></h:outputLabel>
+            <p:inputText id="nomeCliente" value="#osBean.entidade.cliente}"></p:inputText>
+        </p:panelGrid>
+
+
+        <p:dataTable value="#{osBean.entidades}" var="ent" rendered="#{osBean.status == 'BUSCA'}">
+            <p:column>
+                <p:commandButton icon="fa fa-fw fa-pencil" actionListener="#{osBean.editar(ent)}" update="@form"></p:commandButton>
+                <p:commandButton icon="fa fa-fw fa-trash" actionListener="#{osBean.deletar(ent)}" update="@form"></p:commandButton>
+            </p:column>
+            <p:column headerText="Codigo  Os">
+                <h:outputText value="#{ent.codigoOS}"></h:outputText>
+            </p:column>
+            <p:column headerText="Descrição dos Equipamentos">
+                <h:outputText value="#{ent.descricaoEquipamento}"></h:outputText>
+            </p:column>
+            <p:column headerText="Nome do Cliente">
+                <h:outputText value="#{ent.cliente.nomeFantasia}"></h:outputText>
+            </p:column>
+
+
+        </p:dataTable>
+    </h:form>
+
+
+</ui:decorate>

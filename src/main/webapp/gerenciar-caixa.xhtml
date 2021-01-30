@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:decorate xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:p="http://primefaces.org/ui" xmlns:ui="http://xmlns.jcp.org/jsf/facelets" template="template.xhtml" xmlns:os="http://xmlns.jcp.org/jsf/composite/oscomponente" xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+
+    <h:form>
+        <os:toolbar bean="#{caixaBean}" marginBottom="15"> </os:toolbar>
+        <p:panelGrid columns="2" styleClass="ui-panelgrid-blank" rendered="#{caixaBean.status != 'BUSCA'}">
+            <p:outputLabel value="Descrição" for="descricaoid"></p:outputLabel>
+            <p:inputText id="descricaoid" value="#{caixaBean.entidade.descricao}"></p:inputText>
+            <p:outputLabel value="Valor" for="valorid"></p:outputLabel>
+            <p:inputText id="valorid" value="#{caixaBean.entidade.valor}"></p:inputText>
+            <h:outputLabel value="Movimentação"></h:outputLabel>
+            <p:selectOneRadio value="#{caixaBean.entidade.tipoMovimento}" disabled="#{caixaBean.status == 'EDITA'}">
+                <p:ajax event="change" update="@form"></p:ajax>
+                <f:selectItem itemValue="entrada" itemLabel="Entrada"></f:selectItem>
+                <f:selectItem itemValue="saida" itemLabel="Saida"></f:selectItem>
+            </p:selectOneRadio>
+
+        </p:panelGrid>
+
+
+        <p:dataTable value="#{caixaBean.entidades}" var="ent" rendered="#{caixaBean.status == 'BUSCA'}">
+            <p:column>
+                <p:commandButton icon="fa fa-fw fa-pencil" actionListener="#{caixaBean.editar(ent)}" update="@form"></p:commandButton>
+                <p:commandButton icon="fa fa-fw fa-trash" actionListener="#{caixaBean.deletar(ent)}" update="@form"></p:commandButton>
+            </p:column>
+            <p:column headerText="Descrição">
+                <h:outputText value="#{ent.descricao}"></h:outputText>
+            </p:column>
+            <p:column headerText="Valor">
+                <h:outputText value="#{ent.valor}"></h:outputText>
+            </p:column>
+            <p:column headerText="Tipo de Movimentação">
+                <h:outputText value="#{ent.tipoMovimento}"></h:outputText>
+            </p:column>
+
+        </p:dataTable>
+    </h:form>
+
+
+</ui:decorate>
